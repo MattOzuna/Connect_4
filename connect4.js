@@ -303,8 +303,18 @@ class Game{
   }
 }
 
+
+//added player class
+
+class Player{
+  constructor(p1Color, p2Color){
+    this.p1Color = p1Color;
+    this.p2Color = p2Color;
+  }
+}
+
 //added this to enabel a game to start when a button is pressed
-const startButton = document.querySelector('#start-button button');
+const startButton = document.querySelector('#start-button');
 const board = document.querySelector('#board');
 startButton.addEventListener('click', startGame)
 
