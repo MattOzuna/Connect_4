@@ -237,6 +237,11 @@ class Game{
   handleClick(evt) {
     // get x from ID of clicked cell
     const x = +evt.target.id;
+
+    //added this so the game cannot be played beyond someone winning
+    if (this.checkForWin()){
+      return;
+    }
   
     // get next spot in column (if none, ignore click)
     const y = this.findSpotForCol(x);
@@ -298,4 +303,12 @@ class Game{
   }
 }
 
-new Game(6, 7);
+//added this to enabel a game to start when a button is pressed
+const startButton = document.querySelector('#start-button');
+const board = document.querySelector('#board');
+startButton.addEventListener('click', startGame)
+
+function startGame(){
+    board.innerHTML = ''
+    new Game(6, 7);
+}
