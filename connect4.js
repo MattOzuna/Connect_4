@@ -304,11 +304,12 @@ class Game{
 }
 
 //added this to enabel a game to start when a button is pressed
-const startButton = document.querySelector('#start-button');
+const startButton = document.querySelector('#start-button button');
 const board = document.querySelector('#board');
 startButton.addEventListener('click', startGame)
 
 function startGame(){
     board.innerHTML = ''
     new Game(6, 7);
+    startButton.innerText = 'Restart!'
 }
