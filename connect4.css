@@ -32,3 +32,13 @@
 #column-top td:hover {
   background-color: gold;
 }
+
+#start-form{
+  display: flex;
+  justify-content: center;
+}
+
+#game{
+  display: flex;
+  justify-content: center;
+}
