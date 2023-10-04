@@ -153,12 +153,13 @@
 //======================================//======================================//======================================
 //My code
 //Part one
-class Game{
-  constructor (HEIGHT, WIDTH){
+class Game {
+  constructor (p1, p2, HEIGHT = 6, WIDTH =7){
     this.WIDTH = WIDTH;
     this.HEIGHT = HEIGHT;
     this.board = [];
-    this.currPlayer = 1;
+    this.currPlayer = p1;
+    this.players = [p1, p2]
     this.makeBoard();
     this.makeHtmlBoard();
   }
@@ -219,7 +220,7 @@ class Game{
   placeInTable(y, x) {
     const piece = document.createElement('div');
     piece.classList.add('piece');
-    piece.classList.add(`p${this.currPlayer}`);
+    piece.style.backgroundColor= this.currPlayer.color;
     piece.style.top = -50 * (y + 2);
   
     const spot = document.getElementById(`${y}-${x}`);
@@ -264,7 +265,7 @@ class Game{
     }
       
     // switch players
-    this.currPlayer = this.currPlayer === 1 ? 2 : 1;
+    this.currPlayer = this.currPlayer === this.players[0]? this.players[1] : this.players[0];
   }
   
   /** checkForWin: check board cell-by-cell for "does a win start here?" */
@@ -306,10 +307,9 @@ class Game{
 
 //added player class
 
-class Player{
-  constructor(p1Color, p2Color){
-    this.p1Color = p1Color;
-    this.p2Color = p2Color;
+class Player {
+  constructor(color){
+    this.color = color;
   }
 }
 
@@ -318,8 +318,11 @@ const startButton = document.querySelector('#start-button');
 const board = document.querySelector('#board');
 startButton.addEventListener('click', startGame)
 
-function startGame(){
-    board.innerHTML = ''
-    new Game(6, 7);
+function startGame(e){
+    e.preventDefault()
+    board.innerHTML = '';
+    let p1 = new Player(document.querySelector('#p1-color').value)
+    let p2 = new Player(document.querySelector('#p2-color').value)
+    new Game(p1, p2, 6, 7);
     startButton.innerText = 'Restart!'
 }
